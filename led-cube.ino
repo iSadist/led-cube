@@ -1,10 +1,4 @@
-int GROUND_PINS[] = {7, 4};
-int LAYER_PINS[] = {12, 11, 10, 9};
-int INHERIT_PIN = 13;
-
-int BUTTON_PINS[] = {A0, A1, A2};
-
-int DELAY_MS = 500;
+#include "variables.h"
 
 // Make a data structure to 4x4x4 cube leds
 
@@ -49,11 +43,6 @@ void setup_pins() {
   pinMode(INHERIT_PIN, OUTPUT);
 }
 
-
-// I want a function that takes in an array of 4 booleans and sets the pins to HIGH or LOW
-// Example: {true, false, false, false} -> {HIGH, LOW, LOW, LOW}
-
-
 void set_pins(bool pins[4]) {
   for (int i = 0; i < 4; i++) {
     digitalWrite(LAYER_PINS[i], pins[i] ? HIGH : LOW);
@@ -68,29 +57,55 @@ void setBasePins(bool pins[2]) {
   }
 }
 
+// Select the layer to be active. 0 is the bottom layer, 3 is the top layer.
+void setBase(int layer) {
+  if (layer < 0 || layer > 3) {
+    return;
+  }
+
+  if (layer == 0) {
+    bool pins[] = { true, false };
+    setBasePins(pins);
+    return;
+  }
+
+  if (layer == 1) {
+    bool pins[] = { false, true };
+    setBasePins(pins);
+    return;
+  }
+
+  if (layer == 2) {
+    bool pins[] = { false, false };
+    setBasePins(pins);
+    return;
+  }
+
+  if (layer == 3) {
+    bool pins[] = { true, true };
+    setBasePins(pins);
+    return;
+  }
+}
+
+void baseSweep() {
+  setBase(0);
+  delay(DELAY_MS);
+  setBase(1);
+  delay(DELAY_MS);
+  setBase(2);
+  delay(DELAY_MS);
+  setBase(3);
+  delay(DELAY_MS);
+}
+
+// Main setup function
 void setup() {
   setup_pins();
   Serial.begin(9600); // Serial monitor
 }
 
-void baseSweep() {
-  bool basePins[] = { false, false };
-  setBasePins(basePins);
-  delay(DELAY_MS);
-
-  bool basePins1[] = { true, false };
-  setBasePins(basePins1);
-  delay(DELAY_MS);
-
-  bool basePins2[] = { false, true };
-  setBasePins(basePins2);
-  delay(DELAY_MS);
-
-  bool basePins3[] = { true, true };
-  setBasePins(basePins3);
-  delay(DELAY_MS);
-}
-
+// Main loop function
 void loop() {
 
   bool pins0[] = {false, false, true, false};
@@ -98,7 +113,7 @@ void loop() {
 
   baseSweep();
 
-  bool pins1[] = {true, false, false, false};
+  bool pins1[] = {true, true, false, false};
   set_pins(pins1);
 
   baseSweep();
