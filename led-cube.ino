@@ -1,4 +1,5 @@
 #include "variables.h"
+#include "pin-selection.h"
 
 // Make a data structure to 4x4x4 cube leds
 
@@ -43,51 +44,14 @@ void setup_pins() {
   pinMode(INHERIT_PIN, OUTPUT);
 }
 
-void set_pins(bool pins[4]) {
-  for (int i = 0; i < 4; i++) {
-    digitalWrite(LAYER_PINS[i], pins[i] ? HIGH : LOW);
-  }
-}
-
-
-
-void setBasePins(bool pins[2]) {
-  for (int i = 0; i < 2; i++) {
-    digitalWrite(GROUND_PINS[i], pins[i] ? HIGH : LOW);
-  }
-}
-
-// Select the layer to be active. 0 is the bottom layer, 3 is the top layer.
-void setBase(int layer) {
-  if (layer < 0 || layer > 3) {
-    return;
-  }
-
-  if (layer == 0) {
-    bool pins[] = { true, false };
-    setBasePins(pins);
-    return;
-  }
-
-  if (layer == 1) {
-    bool pins[] = { false, true };
-    setBasePins(pins);
-    return;
-  }
-
-  if (layer == 2) {
-    bool pins[] = { false, false };
-    setBasePins(pins);
-    return;
-  }
-
-  if (layer == 3) {
-    bool pins[] = { true, true };
-    setBasePins(pins);
-    return;
-  }
-}
-
+/**
+ * Sweeps the base of the LED cube.
+ * This function sequentially sets the base of the LED cube to different values,
+ * causing a sweeping effect.
+ * 
+ * @param None
+ * @return None
+ */
 void baseSweep() {
   setBase(0);
   delay(DELAY_MS);
@@ -107,14 +71,51 @@ void setup() {
 
 // Main loop function
 void loop() {
-
-  bool pins0[] = {false, false, true, false};
-  set_pins(pins0);
-
+  setPin(0);
   baseSweep();
 
-  bool pins1[] = {true, true, false, false};
-  set_pins(pins1);
+  setPin(1);
+  baseSweep();
 
+  setPin(2);
+  baseSweep();
+
+  setPin(3);
+  baseSweep();
+
+  setPin(4);
+  baseSweep();
+
+  setPin(5);
+  baseSweep();
+
+  setPin(6);
+  baseSweep();
+
+  setPin(7);
+  baseSweep();
+
+  setPin(8);
+  baseSweep();
+
+  setPin(9);
+  baseSweep();
+
+  setPin(10);
+  baseSweep();
+
+  setPin(11);
+  baseSweep();
+
+  setPin(12);
+  baseSweep();
+
+  setPin(13);
+  baseSweep();
+
+  setPin(14);
+  baseSweep();
+
+  setPin(15);
   baseSweep();
 }
