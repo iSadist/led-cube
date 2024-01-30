@@ -1,18 +1,7 @@
+#include "Arduino.h"
 #include "variables.h"
 #include "pin-selection.h"
-
-// Make a data structure to 4x4x4 cube leds
-
-// Add constants for the blinking patterns
-
-// DOCS
-void turn_off() {}
-
-// DOCS
-void turn_on() {}
-
-// DOCS - switch pattern to 
-void switch_pattern() {}
+#include "modes.h"
 
 // DOCS - if the user pressed any buttons, take action
 void listen_to_input() {}
@@ -27,12 +16,6 @@ int to_binary(int digital) {
 int binary_to_pins(int binary, bool is_ground_selection) {
   return 0;
 }
-
-// DOCS - blink many lights at ones (in serial really quickly)
-void blink_lights() {}
-
-// DOCS - blink a single light
-void blink_light(int index, int layer) {}
 
 void setup_pins() {
   // Loop over LAYER_PINS and GROUND_PINS and set them to OUTPUT
@@ -69,53 +52,32 @@ void setup() {
   Serial.begin(9600); // Serial monitor
 }
 
-// Main loop function
+/**
+ * Main loop function for the Arduino.
+ * This function is called repeatedly by the Arduino.
+ * 
+ * @param None
+ * @return None
+ */
 void loop() {
-  setPin(0);
-  baseSweep();
+  cubeLoop();
+}
 
-  setPin(1);
-  baseSweep();
+/**
+ * Main loop function for the LED lights.
+ * This function is called repeatedly by the Arduino.
+ * 
+ * @param None
+ * @return None
+ */
+void cubeLoop() {
+  fullLayerSweep(400);
+  fullLayerSweep(300);
+  fullLayerSweep(250);
+  fullLayerSweep(200);
+  fullLayerSweep(150);
 
-  setPin(2);
-  baseSweep();
+  fullLayerFill(400);
 
-  setPin(3);
-  baseSweep();
-
-  setPin(4);
-  baseSweep();
-
-  setPin(5);
-  baseSweep();
-
-  setPin(6);
-  baseSweep();
-
-  setPin(7);
-  baseSweep();
-
-  setPin(8);
-  baseSweep();
-
-  setPin(9);
-  baseSweep();
-
-  setPin(10);
-  baseSweep();
-
-  setPin(11);
-  baseSweep();
-
-  setPin(12);
-  baseSweep();
-
-  setPin(13);
-  baseSweep();
-
-  setPin(14);
-  baseSweep();
-
-  setPin(15);
-  baseSweep();
+  randomLEDMode(500);
 }

@@ -163,3 +163,59 @@ void setBase(int layer) {
     return;
   }
 }
+
+void selectLED(int pin, int layer) {
+  // Set the layer pins
+  setPin(pin);
+
+  // Set the ground pins
+  setBase(layer);
+}
+
+/**
+ * Selects an array of LED on the LED cube for a specified layer.
+ * 
+ * @param pin The pins to select.
+ * @param pinSize The size of the pin array.
+ * @param layer The layer to select the pins on.
+ * 
+ * @return None
+*/
+void selectLED(int pin[], int pinSize, int layer) {
+  // Loop over the pins and select them for the specified layer
+  for (int i = 0; i < pinSize; i++) {
+    selectLED(pin[i], layer);
+  }
+}
+
+/**
+ * Selects all the lights on a layer.
+ * 
+ * @param layer The layer to select the lights on.
+ * @return None
+*/
+void selectLayer(int layer) {
+  int pins[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ,15};
+  selectLED(pins, 16, layer);
+}
+
+/**
+ * Selects a random LED on the LED cube.
+*/
+void randomLED() {
+  int pin = random(0, 16);
+  int layer = random(0, 4);
+  selectLED(pin, layer);
+}
+
+/**
+ * Randomly selects an LED on the LED cube.
+ * 
+ * @param amount The amount of times to randomly select an LED.
+ * @return None
+*/
+void randomLEDs(int amount) {
+  for (int i = 0; i < amount; i++) {
+    randomLED();
+  }
+}
