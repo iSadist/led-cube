@@ -10,6 +10,11 @@ void selectLED(int pin, int layer);
 void selectLED(int pin[], int pinSize, int layer);
 void selectLayer(int layer);
 
+void selectColumn(int column);
+
+void selectOuterLayer();
+void selectInnerCore();
+
 void randomLED();
 void randomLEDs(int amount);
 

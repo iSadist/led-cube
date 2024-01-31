@@ -199,6 +199,35 @@ void selectLayer(int layer) {
   selectLED(pins, 16, layer);
 }
 
+void selectColumn(int column) {
+  selectLED(column, 0);
+  selectLED(column, 1);
+  selectLED(column, 2);
+  selectLED(column, 3);
+}
+
+void selectOuterLayer() {
+  selectLayer(0);
+  selectLayer(3);
+  selectColumn(0);
+  selectColumn(1);
+  selectColumn(2);
+  selectColumn(3);
+  selectColumn(5);
+  selectColumn(8);
+  selectColumn(9);
+  selectColumn(12);
+  selectColumn(13);
+  selectColumn(14);
+  selectColumn(15);
+}
+
+void selectInnerCore() {
+  int pins[] = { 6, 7, 10, 11 };
+  selectLED(pins, 4, 1);
+  selectLED(pins, 4, 2);
+}
+
 /**
  * Selects a random LED on the LED cube.
 */

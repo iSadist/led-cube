@@ -2,6 +2,7 @@
 #define MODES_H
 
 void fullLayerFill(int executionTime);
+void fullLayerReverseFill(int executionTime);
 void randomLEDMode(int amount);
 void fullLayerSweep(int executionTime);
 

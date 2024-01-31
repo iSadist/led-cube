@@ -9,27 +9,50 @@
  * @return None
 */
 void fullLayerFill(int executionTime) {
-    int pins[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ,15};
   for (int i = 0; i < executionTime; i++) {
-    selectLED(pins, 16, 0);
+    selectLayer(0);
   }
 
   for (int i = 0; i < executionTime / 2; i++) {
-    selectLED(pins, 16, 0);
-    selectLED(pins, 16, 1);
+    selectLayer(0);
+    selectLayer(1);
   }
 
   for (int i = 0; i < executionTime / 3; i++) {
-    selectLED(pins, 16, 0);
-    selectLED(pins, 16, 1);
-    selectLED(pins, 16, 2);
+    selectLayer(0);
+    selectLayer(1);
+    selectLayer(2);
   }
 
   for (int i = 0; i < executionTime / 4; i++) {
-    selectLED(pins, 16, 0);
-    selectLED(pins, 16, 1);
-    selectLED(pins, 16, 2);
-    selectLED(pins, 16, 3);
+    selectLayer(0);
+    selectLayer(1);
+    selectLayer(2);
+    selectLayer(3);
+  }
+}
+
+void fullLayerReverseFill(int executionTime) {
+  for (int i = 0; i < executionTime / 4; i++) {
+    selectLayer(0);
+    selectLayer(1);
+    selectLayer(2);
+    selectLayer(3);
+  }
+
+  for (int i = 0; i < executionTime / 3; i++) {
+    selectLayer(0);
+    selectLayer(1);
+    selectLayer(2);
+  }
+
+  for (int i = 0; i < executionTime / 2; i++) {
+    selectLayer(0);
+    selectLayer(1);
+  }
+
+  for (int i = 0; i < executionTime; i++) {
+    selectLayer(0);
   }
 }
 
