@@ -73,10 +73,9 @@ void loop() {
 void cubeLoop() {
   fullLayerSweep(400);
   fullLayerSweep(300);
-  fullLayerSweep(250);
-  fullLayerSweep(200);
-  fullLayerSweep(150);
 
+  fullLayerFill(400);
+  fullLayerFill(400);
   fullLayerFill(400);
 
   randomLEDMode(500);
