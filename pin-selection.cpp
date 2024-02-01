@@ -199,6 +199,29 @@ void selectLayer(int layer) {
   selectLED(pins, 16, layer);
 }
 
+/**
+ * Selects all the lights on a vertical layer.
+ * 
+ * @param layer The layer to select the lights on.
+ * @param isParallel Whether or not the layer is parallel to the front side or not.
+ * @return None
+*/
+void selectVerticalLayer(int layer, bool isParallel) {
+  if (isParallel) {
+    int columns[] = { layer * 4, layer * 4 + 1, layer * 4 + 2, layer * 4 + 3 };
+
+    for (int i = 0; i < 4; i++) {
+      selectColumn(columns[i]);
+    }
+  } else {
+    int columns[] = { layer, layer + 4, layer + 8, layer + 12 };
+
+    for (int i = 0; i < 4; i++) {
+      selectColumn(columns[i]);
+    }
+  }
+}
+
 void selectColumn(int column) {
   selectLED(column, 0);
   selectLED(column, 1);

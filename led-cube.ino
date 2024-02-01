@@ -71,5 +71,10 @@ void loop() {
  * @return None
  */
 void cubeLoop() {
-  selectOuterLayer();
+  fullLayerSweep(200);
+  fullLayerFill(200);
+  fullLayerReverseFill(200);
+  fullVerticalLayerSweep(200, true);
+  fullVerticalLayerSweep(200, false);
+  randomLEDMode(50);
 }

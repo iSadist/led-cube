@@ -92,3 +92,28 @@ void fullLayerSweep(int executionTime) {
     selectLayer(3);
   }
 }
+
+/**
+ * Sweeps the vertical layers of the LED cube.
+ * 
+ * @param executionTime The amount of time to execute the sweep for.
+ * @param isParallel Whether or not the layers are parallel.
+ * @return None
+*/
+void fullVerticalLayerSweep(int executionTime, bool isParallel) {
+  for (int i = 0; i < executionTime; i++) {
+    selectVerticalLayer(0, isParallel);
+  }
+
+  for (int i = 0; i < executionTime; i++) {
+    selectVerticalLayer(1, isParallel);
+  }
+
+  for (int i = 0; i < executionTime; i++) {
+    selectVerticalLayer(2, isParallel);
+  }
+
+  for (int i = 0; i < executionTime; i++) {
+    selectVerticalLayer(3, isParallel);
+  }
+}

@@ -9,6 +9,7 @@ void setBase(int layer);
 void selectLED(int pin, int layer);
 void selectLED(int pin[], int pinSize, int layer);
 void selectLayer(int layer);
+void selectVerticalLayer(int layer, bool isParallel);
 
 void selectColumn(int column);
 
