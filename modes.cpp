@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "modes.h"
 #include "pin-selection.h"
 #include "variables.h"
 

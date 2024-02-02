@@ -1,7 +1,12 @@
-#include "Arduino.h"
+#include <Arduino.h>
+#include "Controller.h"
+#include "EventListener.h"
 #include "variables.h"
 #include "pin-selection.h"
 #include "modes.h"
+
+Controller controller = Controller();
+EventListener eventListener = EventListener();
 
 void setup_pins() {
   // Loop over LAYER_PINS and GROUND_PINS and set them to OUTPUT
@@ -27,21 +32,17 @@ void setup() {
  * @return None
  */
 void loop() {
-  cubeLoop();
-}
+  int event = eventListener.listen();
 
-/**
- * Main loop function for the LED lights.
- * This function is called repeatedly by the Arduino.
- * 
- * @param None
- * @return None
- */
-void cubeLoop() {
-  fullLayerSweep(200);
-  fullLayerFill(200);
-  fullLayerReverseFill(200);
-  fullVerticalLayerSweep(200, true);
-  fullVerticalLayerSweep(200, false);
-  randomLEDMode(50);
+  if (event != 0) {
+    if (event == 1) {
+      controller.mute();
+    } else if (event == 2) {
+      controller.nextMode();
+    } else if (event == 3) {
+      controller.turnOff();
+    }
+  }
+
+  controller.loop();
 }
