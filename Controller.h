@@ -5,6 +5,7 @@ class Controller {
 private:
     int currentMode;
     int stepIndex;
+    const int maxStepIndex = 12800; 
     bool muted;
 public:
     Controller(/* args */);

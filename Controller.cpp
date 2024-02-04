@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "Controller.h"
 #include "pin-selection.h"
-#include "modes.h"
 
 Controller::Controller(/* args */) {
     currentMode = 0;
@@ -13,7 +12,7 @@ Controller::~Controller() {
 
 void Controller::loop() {
     stepIndex++;
-    stepIndex %= 10000;
+    stepIndex %= this->maxStepIndex;
 
     getModePattern(currentMode, stepIndex);
 }
@@ -36,6 +35,9 @@ void Controller::nextMode() {
 }
 
 void Controller::getModePattern(int mode, int stepIndex) {
+    int pinIndex = stepIndex / (this->maxStepIndex / 100) % 16;
+    int layerIndex = stepIndex / (this->maxStepIndex / 100) % 4;
+
     switch (mode) {
     case 0:
         break;
@@ -43,19 +45,19 @@ void Controller::getModePattern(int mode, int stepIndex) {
         randomLED();
         break;
     case 2:
-        selectColumn(stepIndex / 128 % 16);
+        selectColumn(pinIndex);
         break;
     case 3:
-        selectLED(stepIndex / 128 % 16, stepIndex / 256 % 4);
+        selectLED(pinIndex, layerIndex);
         break;
     case 4:
-        selectVerticalLayer(stepIndex / 128 % 4, false);
+        selectVerticalLayer(layerIndex, false);
         break;
     case 5:
-        selectVerticalLayer(stepIndex / 128 % 4, true);
+        selectVerticalLayer(layerIndex, true);
         break;
     default:
-        selectLayer(stepIndex / 128 % 4);
+        selectLayer(layerIndex);
         break;
     }
 }
