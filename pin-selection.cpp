@@ -31,101 +31,17 @@ void setPin(int pin) {
     return;
   }
 
-  if (pin == 0) {
-    bool pins[] = { false, false, false, false };
-    set_pins(pins);
-    return;
+  // Map the pin connections on the board
+  int pinMap[] = {0, 1, 2, 3, 4, 5, 6, 7, 15, 14, 13, 12, 11, 10, 9, 8};
+  pin = pinMap[pin];
+
+  bool pins[4];
+  for (int i = 0; i < 4; i++) {
+    pins[i] = pin % 2;
+    pin /= 2;
   }
 
-  if (pin == 1) {
-    bool pins[] = { true, false, false, false };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 2) {
-    bool pins[] = { false, true, false, false };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 3) {
-    bool pins[] = { true, true, false, false };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 4) {
-    bool pins[] = { false, false, true, false };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 5) {
-    bool pins[] = { true, false, true, false };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 6) {
-    bool pins[] = { false, true, true, false };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 7) {
-    bool pins[] = { true, true, true, false };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 8) {
-    bool pins[] = { true, true, true, true };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 9) {
-    bool pins[] = { false, true, true, true };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 10) {
-    bool pins[] = { true, false, true, true };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 11) {
-    bool pins[] = { false, false, true, true };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 12) {
-    bool pins[] = { true, true, false, true };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 13) {
-    bool pins[] = { false, true, false, true };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 14) {
-    bool pins[] = { true, false, false, true };
-    set_pins(pins);
-    return;
-  }
-
-  if (pin == 15) {
-    bool pins[] = { false, false, false, true };
-    set_pins(pins);
-    return;
-  }
+  set_pins(pins);
 }
 
 /**
@@ -139,29 +55,15 @@ void setBase(int layer) {
     return;
   }
 
-  if (layer == 0) {
-    bool pins[] = { true, false };
-    setBasePins(pins);
-    return;
-  }
+  // Correct for the connections on the board are differently placed.
+  int pinMap[] = {1, 2, 0, 3};
+  layer = pinMap[layer];
 
-  if (layer == 1) {
-    bool pins[] = { false, true };
-    setBasePins(pins);
-    return;
-  }
+  bool pins[2] = { false, false };
+  pins[0] = layer & 1; // Check the least significant bit
+  pins[1] = layer & 2; // Check the second least significant bit
 
-  if (layer == 2) {
-    bool pins[] = { false, false };
-    setBasePins(pins);
-    return;
-  }
-
-  if (layer == 3) {
-    bool pins[] = { true, true };
-    setBasePins(pins);
-    return;
-  }
+   setBasePins(pins);
 }
 
 void selectLED(int pin, int layer) {
