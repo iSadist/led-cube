@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "Controller.h"
+#include "Pattern.h"
 #include "pin-selection.h"
 
 Controller::Controller(/* args */) {
@@ -23,6 +24,7 @@ void Controller::mute() {
 
 void Controller::turnOff() {
     currentMode = 0;
+    // TODO: Should set inherit pin on multiplexer to 1
 }
 
 void Controller::setMode(int mode) {
