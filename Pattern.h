@@ -18,4 +18,8 @@ struct Pattern
     List<LED> leds;
 };
 
+struct Sequence {
+    List<Pattern> patterns;
+};
+
 #endif

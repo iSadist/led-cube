@@ -3,7 +3,15 @@
 
 #include <Arduino.h>
 
-Animator::Animator() {}
+Animator::Animator() {
+    this->sequence = List<Pattern>();
+    this->currentFrame = 0;
+}
+
+Animator::Animator(Sequence sequence) {
+    this->sequence = sequence.patterns;
+    this->currentFrame = 0;
+}
 
 Animator::~Animator() {}
 

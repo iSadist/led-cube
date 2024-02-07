@@ -19,7 +19,8 @@ private:
     */
     void updateCube();
 public:
-    Animator(/* args */);
+    Animator();
+    Animator(Sequence sequence);
     ~Animator();
 
     /**
