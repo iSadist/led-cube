@@ -7,15 +7,15 @@ Animator::Animator() {}
 
 Animator::~Animator() {}
 
-Animator::addFrame(Pattern p) {
+void Animator::addFrame(Pattern p) {
     sequence.push_back(p);
 }
 
-Animator::updateFrame(int stepIndex) {
+void Animator::updateFrame(int stepIndex) {
     currentFrame = (stepIndex / 100) % sequence.size();
 }
 
-Animator::playFrame() {
+void Animator::playFrame() {
     updateCube();
 }
 
