@@ -1,19 +1,30 @@
 #include "Animator.h"
+#include "pin-selection.h"
 
 #include <Arduino.h>
 
-Animator::Animator(/* args */)
-{
+Animator::Animator() {}
+
+Animator::~Animator() {}
+
+Animator::addFrame(Pattern p) {
+    sequence.push_back(p);
 }
 
-Animator::~Animator()
-{
+Animator::updateFrame(int stepIndex) {
+    currentFrame = (stepIndex / 100) % sequence.size();
+}
+
+Animator::playFrame() {
+    updateCube();
 }
 
 void Animator::updateCube() {
-    Pattern p = sequence.get(currentFrame);
-    for (int i = 0; i < 64; i++) {
-        LED led = p.leds[i];
-        digitalWrite(led.pin, led.state);
+    Pattern p = sequence.at(currentFrame);
+    List<LED> leds = p.leds;
+
+    for (int i = 0; i < leds.size(); i++) {
+        LED led = leds.at(i);
+        selectLED(led.pin, led.layer);
     }
 }
