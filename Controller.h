@@ -1,17 +1,12 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "Animator.h"
-
 class Controller {
 private:
     int currentMode;
     int stepIndex;
     const int maxStepIndex = 12800; 
     bool muted;
-    List<Animator> animators;
-
-    void setupAnimators();
 public:
     Controller(/* args */);
     ~Controller();

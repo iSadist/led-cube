@@ -3,29 +3,14 @@
 #include "Pattern.h"
 #include "pin-selection.h"
 #include "Animator.h"
-#include "FileReader.h"
 
 Controller::Controller(/* args */) {
     currentMode = 0;
     stepIndex = 0;
     muted = false;
-    animators = List<Animator>();
-
-    this->setupAnimators();
 }
 
 Controller::~Controller() {
-}
-
-void Controller::setupAnimators() {
-    FileReader fileReader = FileReader();
-    List<Sequence> sequences = fileReader.readSequences("./sequences");
-
-    for (int i = 0; i < sequences.size(); i++) {
-        Sequence s = sequences.at(i);
-        Animator animator = Animator(s);
-        animators.push_back(animator);
-    }
 }
 
 void Controller::loop() {
