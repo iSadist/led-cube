@@ -15,6 +15,7 @@ public:
     T& at(int index);
     int size() const;
     bool empty() const;
+    void reverse();
 
 private:
     T* m_data;
@@ -72,6 +73,17 @@ template <typename T>
 bool List<T>::empty() const
 {
     return m_size == 0;
+}
+
+template <typename T>
+void List<T>::reverse()
+{
+    for (int i = 0; i < m_size / 2; ++i)
+    {
+        T temp = m_data[i];
+        m_data[i] = m_data[m_size - i - 1];
+        m_data[m_size - i - 1] = temp;
+    }
 }
 
 template <typename T>

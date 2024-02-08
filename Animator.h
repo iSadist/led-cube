@@ -5,8 +5,6 @@
 
 #include "List.h"
 
-using namespace std;
-
 // Module that take in an array of Patterns and plays them in sequence
 class Animator
 {

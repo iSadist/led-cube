@@ -4,22 +4,51 @@ FileReader::FileReader() {}
 
 FileReader::~FileReader() {}
 
-List<String> FileReader::getFileNames(String folder_path)
+Pattern FileReader::convertToPattern(Frame frame)
 {
-    return List<String>();
+    Pattern pattern;
+
+    // Loop over each LED in the frame
+    for (int i = 0; i < 64; i++)
+    {
+        bool isOn = frame.pattern[i] == 1;
+
+        if (isOn)
+        {
+            LED led;
+            led.pin = i;
+            led.layer = i / 16;
+            led.state = isOn;
+
+            pattern.leds.push_back(led);
+        }
+    }
+
+    return pattern;
 }
 
-String FileReader::readFile(String file_path)
+Sequence FileReader::convertToSequence(List<Frame> frames)
 {
-    return String();
-}
+    Sequence sequence;
 
-Sequence FileReader::readSequence(String file_content)
-{
-    return Sequence();
+    // Loop over each frame
+    for (int i = 0; i < frames.size(); i++)
+    {
+        Frame frame = frames.at(i);
+        Pattern pattern = convertToPattern(frame);
+        sequence.patterns.push_back(pattern);
+    }
+
+    return sequence;
 }
 
 List<Sequence> FileReader::readSequences(String folder_path)
 {
-    return List<Sequence>();
+    List<Sequence> sequences;
+    List<Frame> frames = upSweepFrames();
+    List<Frame> frames2 = downSweepFrames();
+    List<Frame> frames3 = frontSweepFrames();
+    Sequence sequence = convertToSequence(frames);
+    sequences.push_back(sequence);
+    return sequences;
 }
