@@ -32,7 +32,7 @@ void setPin(int pin) {
   }
 
   // Map the pin connections on the board
-  int pinMap[] = {0, 1, 2, 3, 4, 5, 6, 7, 15, 14, 13, 12, 11, 10, 9, 8};
+  int pinMap[] = {0, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 8, 9, 10, 11};
   pin = pinMap[pin];
 
   bool pins[4];
@@ -56,7 +56,7 @@ void setBase(int layer) {
   }
 
   // Correct for the connections on the board are differently placed.
-  int pinMap[] = {1, 2, 0, 3};
+  int pinMap[] = {1, 2, 3, 0};
   layer = pinMap[layer];
 
   bool pins[2] = { false, false };
