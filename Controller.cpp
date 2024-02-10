@@ -46,7 +46,7 @@ void Controller::getModePattern(int mode, int stepIndex) {
     case 0:
         break;
     case 1:
-        randomLED();
+        randomLED(stepIndex % 128);
         break;
     case 2:
         selectColumn(pinIndex);

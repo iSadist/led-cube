@@ -156,7 +156,9 @@ void selectInnerCore() {
 /**
  * Selects a random LED on the LED cube.
 */
-void randomLED() {
+void randomLED(int index) {
+  if (index > 0) { return; }
+
   int pin = random(0, 16);
   int layer = random(0, 4);
   selectLED(pin, layer);
@@ -170,6 +172,6 @@ void randomLED() {
 */
 void randomLEDs(int amount) {
   for (int i = 0; i < amount; i++) {
-    randomLED();
+    randomLED(0);
   }
 }

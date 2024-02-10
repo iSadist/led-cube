@@ -16,7 +16,7 @@ void selectColumn(int column);
 void selectOuterLayer();
 void selectInnerCore();
 
-void randomLED();
+void randomLED(int index);
 void randomLEDs(int amount);
 
 #endif // PIN_SELECTION_FUNCTIONS_H
