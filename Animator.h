@@ -5,12 +5,14 @@
 
 #include "List.h"
 
+// TODO: Make this into an interface. Have different Animators for different patterns.
+
 // Module that take in an array of Patterns and plays them in sequence
 class Animator
 {
 private:
     int currentFrame;
-    List<Pattern> sequence;
+    int maxFrames;
 
     /**
      * Updates the LED cube with the current frame.
@@ -18,7 +20,6 @@ private:
     void updateCube();
 public:
     Animator();
-    Animator(Sequence sequence);
     ~Animator();
 
     /**
@@ -38,7 +39,7 @@ public:
     void updateFrame(int stepIndex);
 
     /**
-     * Plays the current frame.
+     * Plays the current frame. The pin selection logic inside the function.
      * 
      * @param None
      * @return None

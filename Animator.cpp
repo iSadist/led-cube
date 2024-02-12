@@ -2,23 +2,17 @@
 #include <Arduino.h>
 
 Animator::Animator() {
-    this->sequence = List<Pattern>();
     this->currentFrame = 0;
-}
-
-Animator::Animator(Sequence sequence) {
-    this->sequence = sequence.patterns;
-    this->currentFrame = 0;
+    this->maxFrames = 8;
 }
 
 Animator::~Animator() {}
 
 void Animator::addFrame(Pattern p) {
-    sequence.push_back(p);
 }
 
 void Animator::updateFrame(int stepIndex) {
-    currentFrame = (stepIndex / 100) % sequence.size();
+    currentFrame = (stepIndex / 100) % maxFrames;
 }
 
 void Animator::playFrame() {
@@ -26,4 +20,17 @@ void Animator::playFrame() {
 }
 
 void Animator::updateCube() {
+    // Switch on the current frame
+    switch (currentFrame) {
+        // case 0:
+        //     // code for frame 0
+        //     break;
+        // case 1:
+        //     // code for frame 1
+        //     break;
+        // ...
+        default:
+            // code for default case
+            break;
+    }
 }
