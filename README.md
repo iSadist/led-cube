@@ -10,9 +10,13 @@ With this construction, each lamp can be turned on individually by applying powe
 
 .ino file
 
-modes.h
+Controller.h
 
-pin-selection.h
+EventListener.h
+
+List.h
+
+PinSelector.h
 
 variables.h
 

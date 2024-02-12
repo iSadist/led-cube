@@ -3,7 +3,6 @@
 #include "Controller.h"
 #include "EventListener.h"
 #include "variables.h"
-#include "pin-selection.h"
 
 Controller controller = Controller();
 EventListener eventListener = EventListener();

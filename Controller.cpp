@@ -1,13 +1,12 @@
 #include <Arduino.h>
 #include "Controller.h"
-#include "Pattern.h"
-#include "pin-selection.h"
-#include "Animator.h"
+#include "PinSelector.h"
 
 Controller::Controller(/* args */) {
     currentMode = 0;
     stepIndex = 0;
     muted = false;
+    selector = PinSelector();
 }
 
 Controller::~Controller() {
@@ -46,22 +45,22 @@ void Controller::getModePattern(int mode, int stepIndex) {
     case 0:
         break;
     case 1:
-        randomLED(stepIndex % 128);
+        selector.randomLED(stepIndex % 128);
         break;
     case 2:
-        selectColumn(pinIndex);
+        selector.selectColumn(pinIndex);
         break;
     case 3:
-        selectLED(pinIndex, layerIndex);
+        selector.selectLED(pinIndex, layerIndex);
         break;
     case 4:
-        selectVerticalLayer(layerIndex, false);
+        selector.selectVerticalLayer(layerIndex, false);
         break;
     case 5:
-        selectVerticalLayer(layerIndex, true);
+        selector.selectVerticalLayer(layerIndex, true);
         break;
     default:
-        selectLayer(layerIndex);
+        selector.selectLayer(layerIndex);
         break;
     }
 }

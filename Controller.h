@@ -1,12 +1,16 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include "PinSelector.h"
+
 class Controller {
 private:
     int currentMode;
     int stepIndex;
     const int maxStepIndex = 12800; 
     bool muted;
+
+    PinSelector selector;
 public:
     Controller(/* args */);
     ~Controller();
