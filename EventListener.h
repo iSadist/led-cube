@@ -3,6 +3,7 @@
 
 class EventListener {
 private:
+    int previousChoice;
     bool readButton(int value);
 public:
     EventListener(/* args */);

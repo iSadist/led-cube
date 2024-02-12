@@ -9,6 +9,7 @@ private:
     int stepIndex;
     const int maxStepIndex = 12800; 
     bool muted;
+    bool isOn;
 
     PinSelector selector;
 public:
