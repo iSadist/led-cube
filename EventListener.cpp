@@ -14,15 +14,15 @@ int EventListener::listen() {
     const int NO_CHOICE = 0;
     int choice = NO_CHOICE;
 
-    int muteButton = analogRead(A0);
+    int muteButton = analogRead(A0); // Not existing on the board
     int nextButton = analogRead(A1);
-    int onOffButton = analogRead(A2);
+    int speedControlButton = analogRead(A2);
 
     if (readButton(muteButton)) {
         choice = 1;
     } else if (readButton(nextButton)) {
         choice = 2;
-    } else if (readButton(onOffButton)) {
+    } else if (readButton(speedControlButton)) {
         choice = 3;
     }
 

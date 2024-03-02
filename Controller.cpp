@@ -5,8 +5,8 @@
 Controller::Controller(/* args */) {
     currentMode = 0;
     stepIndex = 0;
+    speedMultiplier = 1;
     muted = false;
-    isOn = true;
     selector = PinSelector();
 }
 
@@ -14,8 +14,6 @@ Controller::~Controller() {
 }
 
 void Controller::loop() {
-    if (!isOn) return;
-
     stepIndex++;
     stepIndex %= this->maxStepIndex;
 
@@ -24,12 +22,6 @@ void Controller::loop() {
 
 void Controller::mute() {
     muted = !muted;
-}
-
-void Controller::turnOff() {
-    isOn = !isOn;
-
-    // TODO: Should set inherit pin on multiplexer to 1
 }
 
 void Controller::setMode(int mode) {
@@ -41,9 +33,37 @@ void Controller::nextMode() {
     currentMode %= 8;
 }
 
+void Controller::increaseSpeed() {
+    speedMultiplier += 1;
+
+    if (speedMultiplier > 5) {
+        speedMultiplier = 1;
+    }
+
+    Serial.print("Speed: ");
+    Serial.println(speedMultiplier);
+}
+
+int Controller::getSpeed() {
+    switch (speedMultiplier) {
+    case 1:
+        return 50;
+    case 2:
+        return 100;
+    case 3:
+        return 200;
+    case 4:
+        return 300;
+    case 5:
+        return 400;
+    default:
+        return 50;
+    }
+}
+
 void Controller::getModePattern(int mode, int stepIndex) {
-    int pinIndex = stepIndex / (this->maxStepIndex / 100) % 16;
-    int layerIndex = stepIndex / (this->maxStepIndex / 100) % 4;
+    int pinIndex = stepIndex / (this->maxStepIndex / this->getSpeed()) % 16;
+    int layerIndex = stepIndex / (this->maxStepIndex / this->getSpeed()) % 4;
 
     switch (mode) {
     case 0:

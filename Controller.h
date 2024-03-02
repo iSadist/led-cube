@@ -9,8 +9,7 @@ private:
     int stepIndex;
     const int maxStepIndex = 12800; 
     bool muted;
-    bool isOn;
-
+    int speedMultiplier;
     PinSelector selector;
 public:
     Controller(/* args */);
@@ -40,6 +39,22 @@ public:
      * @return None
      */
     void turnOff();
+
+    /**
+     * Increases the speed of the LED cube.
+     * 
+     * @param None
+     * @return None
+     */
+    void increaseSpeed();
+
+    /**
+     * Gets the current speed of the LED cube.
+     * 
+     * @param None
+     * @return The current speed of the LED cube.
+     */
+    int getSpeed();
 
     /**
      * Sets the current mode of the LED cube. Mode 0 is the cube turned off.

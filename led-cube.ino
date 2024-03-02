@@ -39,7 +39,7 @@ void loop() {
     } else if (event == 2) {
       controller.nextMode();
     } else if (event == 3) {
-      controller.turnOff();
+      controller.increaseSpeed();
     }
   }
 
