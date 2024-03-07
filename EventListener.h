@@ -4,6 +4,7 @@
 class EventListener {
 private:
     int previousChoice;
+    int previousChoiceTime;
     bool readButton(int value);
 public:
     EventListener(/* args */);

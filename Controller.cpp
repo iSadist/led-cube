@@ -31,6 +31,9 @@ void Controller::setMode(int mode) {
 void Controller::nextMode() {
     currentMode++;
     currentMode %= 8;
+
+    Serial.print("Mode: ");
+    Serial.println(currentMode);
 }
 
 void Controller::increaseSpeed() {
@@ -83,6 +86,12 @@ void Controller::getModePattern(int mode, int stepIndex) {
         break;
     case 5:
         selector.selectVerticalLayer(layerIndex, true);
+        break;
+    case 6:
+        selector.selectOuterLayer();
+        break;
+    case 7:
+        selector.selectInnerCore();
         break;
     default:
         selector.selectLayer(layerIndex);

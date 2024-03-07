@@ -33,14 +33,19 @@ void setup() {
 void loop() {
   int event = eventListener.listen();
 
-  if (event != 0) {
-    if (event == 1) {
-      controller.mute();
-    } else if (event == 2) {
-      controller.nextMode();
-    } else if (event == 3) {
-      controller.increaseSpeed();
-    }
+  switch (event) {
+  case 0:
+    break;
+  case 1:
+    controller.mute();
+    break;
+  case 2:
+    Serial.println("Next mode");
+    controller.nextMode();
+    break;
+  case 3:
+    controller.increaseSpeed();
+    break;
   }
 
   controller.loop();

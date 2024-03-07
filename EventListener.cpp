@@ -18,9 +18,7 @@ int EventListener::listen() {
     int nextButton = analogRead(A1);
     int speedControlButton = analogRead(A2);
 
-    if (readButton(muteButton)) {
-        choice = 1;
-    } else if (readButton(nextButton)) {
+    if (readButton(nextButton)) {
         choice = 2;
     } else if (readButton(speedControlButton)) {
         choice = 3;
@@ -31,7 +29,18 @@ int EventListener::listen() {
         return NO_CHOICE;
     }
 
+    if (previousChoice != choice) {
+        int currentMillis = millis();
+
+        if (currentMillis - previousChoiceTime < 250) {
+            return NO_CHOICE;
+        }
+    }
+
+    Serial.println(choice);
+
     previousChoice = choice;
+    previousChoiceTime = millis();
 
     return choice;
 }
