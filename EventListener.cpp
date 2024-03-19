@@ -30,14 +30,12 @@ int EventListener::listen() {
     }
 
     if (previousChoice != choice) {
-        int currentMillis = millis();
+        unsigned long currentMillis = millis();
 
         if (currentMillis - previousChoiceTime < 250) {
             return NO_CHOICE;
         }
     }
-
-    Serial.println(choice);
 
     previousChoice = choice;
     previousChoiceTime = millis();

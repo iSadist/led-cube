@@ -40,7 +40,6 @@ void loop() {
     controller.mute();
     break;
   case 2:
-    Serial.println("Next mode");
     controller.nextMode();
     break;
   case 3:

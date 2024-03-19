@@ -31,9 +31,6 @@ void Controller::setMode(int mode) {
 void Controller::nextMode() {
     currentMode++;
     currentMode %= 8;
-
-    Serial.print("Mode: ");
-    Serial.println(currentMode);
 }
 
 void Controller::increaseSpeed() {
@@ -42,9 +39,6 @@ void Controller::increaseSpeed() {
     if (speedMultiplier > 5) {
         speedMultiplier = 1;
     }
-
-    Serial.print("Speed: ");
-    Serial.println(speedMultiplier);
 }
 
 int Controller::getSpeed() {
