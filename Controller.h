@@ -57,6 +57,14 @@ public:
     int getSpeed();
 
     /**
+     * Gets the current speed of the LED cube in random mode.
+     * 
+     * @param None
+     * @return The current speed of the LED cube.
+     */
+    int getSpeedForRandom();
+
+    /**
      * Sets the current mode of the LED cube. Mode 0 is the cube turned off.
      * 
      * @param mode The mode to set the LED cube to.

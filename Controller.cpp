@@ -58,6 +58,23 @@ int Controller::getSpeed() {
     }
 }
 
+int Controller::getSpeedForRandom() {
+    switch (speedMultiplier) {
+    case 1:
+        return 1;
+    case 2:
+        return 2;
+    case 3:
+        return 8;
+    case 4:
+        return 16;
+    case 5:
+        return 64;
+    default:
+        return 128;
+    }
+}
+
 void Controller::getModePattern(int mode, int stepIndex) {
     int pinIndex = stepIndex / (this->maxStepIndex / this->getSpeed()) % 16;
     int layerIndex = stepIndex / (this->maxStepIndex / this->getSpeed()) % 4;
@@ -67,7 +84,7 @@ void Controller::getModePattern(int mode, int stepIndex) {
         selector.selectLED(pinIndex, 3 - layerIndex);
         break;
     case 1:
-        selector.randomLED(stepIndex % 128);
+        selector.randomLED(stepIndex % (256 / this->getSpeedForRandom()));
         break;
     case 2:
         selector.selectColumn(pinIndex);
